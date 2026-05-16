@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relatório DISC — Repertorium®</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #2D5016;
+    --verde-medio: #4A7C29;
+    --verde-claro: #7FB341;
+    --verde-suave: #B8D89A;
+    --verde-pale: #EDF5E4;
+    --creme: #FAF7F2;
+    --creme-escuro: #F0EAE0;
+    --terra: #C4956A;
+    --terra-escuro: #8B6340;
+    --cinza: #6B7280;
+    --cinza-claro: #D1D5DB;
+    --preto: #1A1A1A;
+    --branco: #FFFFFF;
+    --D: #E85D5D;
+    --I: #F4A623;
+    --S: #3BB08F;
+    --C: #4A90D9;
+    --shadow: 0 4px 24px rgba(0,0,0,0.08);
+    --shadow-lg: 0 12px 48px rgba(0,0,0,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--creme);
+    color: var(--preto);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  /* ─── CAPA ─── */
+  .capa {
+    min-height: 100vh;
+    background: var(--verde);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 40px;
+    text-align: center;
+  }
+
+  .capa::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .capa::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 350px; height: 350px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+
+  .capa-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--verde-suave);
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    opacity: 0.9;
+  }
+
+  .capa-arvore {
+    font-size: 72px;
+    margin-bottom: 32px;
+    opacity: 0.9;
+    animation: floatTree 4s ease-in-out infinite;
+  }
+
+  @keyframes floatTree {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .capa-titulo {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    color: var(--branco);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .capa-subtitulo {
+    font-size: 16px;
+    color: var(--verde-suave);
+    letter-spacing: 1px;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  .capa-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 32px 48px;
+    margin-bottom: 48px;
+    backdrop-filter: blur(8px);
+  }
+
+  .capa-nome {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 40px);
+    color: var(--branco);
+    margin-bottom: 8px;
+  }
+
+  .capa-perfil-badge {
+    display: inline-block;
+    background: var(--verde-claro);
+    color: var(--verde);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 8px 24px;
+    border-radius: 100px;
+    margin-top: 12px;
+  }
+
+  .capa-meta {
+    display: flex;
+    gap: 32px;
+    color: rgba(255,255,255,0.5);
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+
+  /* ─── LAYOUT GERAL ─── */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ─── SEÇÃO ─── */
+  .secao {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid var(--creme-escuro);
+  }
+
+  .secao:last-of-type { border-bottom: none; }
+
+  .secao-num {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--verde-claro);
+    margin-bottom: 12px;
+  }
+
+  .secao-titulo {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    color: var(--verde);
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .secao-desc {
+    font-size: 16px;
+    color: var(--cinza);
+    max-width: 600px;
+    margin-bottom: 48px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ─── DESTAQUE PERFIL ─── */
+  .perfil-destaque {
+    background: var(--verde);
+    border-radius: 24px;
+    padding: 48px;
+    margin-bottom: 32px;
+    color: var(--branco);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .perfil-destaque::before {
+    content: attr(data-perfil);
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'DM Serif Display', serif;
+    font-size: 120px;
+    color: rgba(255,255,255,0.05);
+    pointer-events: none;
+  }
+
+  .perfil-badge-grande {
+    display: inline-block;
+    background: var(--verde-claro);
+    color: var(--verde);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .perfil-descricao {
+    font-size: 17px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.88);
+    max-width: 700px;
+  }
+
+  .perfil-forças {
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .perfil-forças h4 {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--verde-suave);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  .perfil-forças p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.7;
+  }
+
+  /* ─── GRÁFICO DISC ─── */
+  .disc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 600px) { .disc-grid { grid-template-columns: 1fr; } }
+
+  .disc-card {
+    background: var(--branco);
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--cor);
+  }
+
+  .disc-card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .disc-letra {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: var(--cor);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    flex-shrink: 0;
+  }
+
+  .disc-card-info h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--preto);
+  }
+
+  .disc-card-info span {
+    font-size: 13px;
+    color: var(--cinza);
+  }
+
+  .disc-barra-wrap {
+    margin-bottom: 14px;
+  }
+
+  .disc-barra-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--cinza);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .disc-barra-bg {
+    height: 8px;
+    background: var(--creme-escuro);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .disc-barra-fill {
+    height: 100%;
+    border-radius: 100px;
+    background: var(--cor);
+    transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 0;
+  }
+
+  .disc-barra-fill.animada { width: var(--w); }
+
+  .disc-valor {
+    font-size: 36px;
+    font-family: 'DM Serif Display', serif;
+    color: var(--cor);
+    margin-top: 8px;
+  }
+
+  .disc-traço {
+    font-size: 13px;
+    color: var(--cinza);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  /* ─── BARRAS DE COMPETÊNCIA ─── */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 600px) { .comp-grid { grid-template-columns: 1fr; } }
+
+  .comp-item {
+    background: var(--branco);
+    border-radius: 16px;
+    padding: 20px 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .comp-nome {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--cinza);
+    margin-bottom: 10px;
+  }
+
+  .comp-barras { display: flex; flex-direction: column; gap: 8px; }
+
+  .comp-barra-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .comp-tag {
+    font-size: 10px;
+    color: var(--cinza);
+    width: 58px;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+
+  .comp-barra-bg {
+    flex: 1;
+    height: 6px;
+    background: var(--creme-escuro);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .comp-barra-fill {
+    height: 100%;
+    border-radius: 100px;
+    transition: width 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 0;
+  }
+
+  .comp-barra-fill.nat { background: var(--verde-medio); }
+  .comp-barra-fill.ada { background: var(--terra); }
+  .comp-barra-fill.animada { width: var(--w); }
+
+  .comp-num {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--preto);
+    width: 28px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* ─── RADAR VISUAL ─── */
+  .radar-wrap {
+    background: var(--branco);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+
+  canvas#radarChart {
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .radar-legenda {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .radar-leg-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--cinza);
+  }
+
+  .radar-leg-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ─── VALORES ─── */
+  .valores-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .valor-item {
+    background: var(--branco);
+    border-radius: 16px;
+    padding: 20px 28px;
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: 180px 1fr 56px;
+    align-items: center;
+    gap: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .valor-item { grid-template-columns: 1fr; gap: 12px; }
+  }
+
+  .valor-nome {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--preto);
+  }
+
+  .valor-nome small {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--cinza);
+    letter-spacing: 0;
+    text-transform: none;
+    margin-top: 2px;
+  }
+
+  .valor-barra-bg {
+    height: 10px;
+    background: var(--creme-escuro);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .valor-barra-fill {
+    height: 100%;
+    border-radius: 100px;
+    transition: width 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 0;
+    background: var(--cor-valor);
+  }
+
+  .valor-barra-fill.animada { width: var(--w); }
+
+  .valor-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--cor-valor);
+    text-align: right;
+  }
+
+  /* ─── MOTIVADORES ─── */
+  .motivadores-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 600px) { .motivadores-grid { grid-template-columns: 1fr; } }
+
+  .motivador-card {
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: var(--shadow);
+  }
+
+  .motivador-card.principal { background: var(--verde); color: var(--branco); }
+  .motivador-card.secundario { background: var(--branco); color: var(--preto); border: 2px solid var(--creme-escuro); }
+
+  .motivador-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    opacity: 0.7;
+  }
+
+  .motivador-titulo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .motivador-card.principal .motivador-titulo { color: var(--verde-suave); }
+  .motivador-card.secundario .motivador-titulo { color: var(--verde); }
+
+  .motivador-texto {
+    font-size: 14px;
+    line-height: 1.75;
+    opacity: 0.85;
+  }
+
+  /* ─── MEDOS / PONTOS ─── */
+  .tags-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .tag-item {
+    background: var(--branco);
+    border: 1.5px solid var(--creme-escuro);
+    border-radius: 100px;
+    padding: 8px 18px;
+    font-size: 13px;
+    color: var(--cinza);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: all 0.2s;
+  }
+
+  .tag-item:hover {
+    border-color: var(--verde-claro);
+    color: var(--verde);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+
+  .tag-item .icon { font-size: 15px; }
+
+  /* ─── LIDERANÇA ─── */
+  .lideranca-donut {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    background: var(--branco);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: var(--shadow);
+    flex-wrap: wrap;
+  }
+
+  .donut-wrap {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .donut-wrap canvas { display: block; }
+
+  .lideranca-lista { flex: 1; min-width: 200px; }
+
+  .lid-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--creme-escuro);
+  }
+
+  .lid-item:last-child { border-bottom: none; }
+
+  .lid-cor {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .lid-info { flex: 1; }
+
+  .lid-nome {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--preto);
+  }
+
+  .lid-desc {
+    font-size: 12px;
+    color: var(--cinza);
+    margin-top: 2px;
+  }
+
+  .lid-pct {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--preto);
+  }
+
+  /* ─── PERSONALIDADE JUNG ─── */
+  .jung-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 600px) { .jung-grid { grid-template-columns: 1fr; } }
+
+  .jung-card {
+    background: var(--branco);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+
+  .jung-tipo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    color: var(--verde);
+    margin-bottom: 8px;
+  }
+
+  .jung-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cinza);
+    margin-bottom: 16px;
+  }
+
+  .jung-barra-dupla {
+    display: flex;
+    height: 8px;
+    border-radius: 100px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .jung-lado-a {
+    transition: width 1.4s ease;
+    background: var(--cor-a);
+    width: var(--pct-a);
+  }
+
+  .jung-lado-b {
+    flex: 1;
+    background: var(--cor-b);
+  }
+
+  .jung-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--cinza);
+  }
+
+  /* ─── COMUNICAÇÃO ─── */
+  .com-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 600px) { .com-grid { grid-template-columns: 1fr; } }
+
+  .com-card {
+    background: var(--branco);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border-left: 3px solid var(--cor-border);
+  }
+
+  .com-titulo {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .com-titulo .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--cor-border);
+    flex-shrink: 0;
+  }
+
+  .com-lista { list-style: none; }
+
+  .com-lista li {
+    font-size: 13px;
+    color: var(--cinza);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--creme-escuro);
+    line-height: 1.5;
+  }
+
+  .com-lista li:last-child { border-bottom: none; }
+
+  /* ─── MAPEAMENTO ─── */
+  .mapa-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mapa-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--branco);
+    border-radius: 12px;
+    padding: 14px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  .mapa-polo {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--cinza);
+    width: 120px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .mapa-trilho {
+    flex: 1;
+    height: 6px;
+    background: var(--creme-escuro);
+    border-radius: 100px;
+    position: relative;
+  }
+
+  .mapa-marcador {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--verde);
+    border: 2px solid var(--branco);
+    box-shadow: 0 0 0 2px var(--verde);
+    transition: left 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+    left: 50%;
+  }
+
+  .mapa-marcador.animado { left: var(--pos); }
+
+  .mapa-polo.direito {
+    text-align: left;
+  }
+
+  /* ─── RODAPÉ ─── */
+  .rodape {
+    background: var(--verde);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 48px 24px;
+    font-size: 13px;
+  }
+
+  .rodape-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--branco);
+    margin-bottom: 8px;
+    opacity: 0.9;
+  }
+
+  /* ─── UTILS ─── */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+
+  .chip {
+    background: var(--verde-pale);
+    color: var(--verde);
+    border: 1.5px solid var(--verde-suave);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--creme-escuro);
+    margin: 40px 0;
+  }
+
+  .nota {
+    background: var(--verde-pale);
+    border-left: 3px solid var(--verde-claro);
+    border-radius: 0 12px 12px 0;
+    padding: 16px 20px;
+    font-size: 14px;
+    color: var(--verde-medio);
+    line-height: 1.65;
+    margin-top: 24px;
+  }
+
+  /* ─── SUMMARY RÁPIDO ─── */
+  .summary-bar {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+
+  .summary-item {
+    flex: 1;
+    min-width: 140px;
+    background: var(--branco);
+    border-radius: 16px;
+    padding: 20px 24px;
+    box-shadow: var(--shadow);
+    border-top: 3px solid var(--cor-sum);
+  }
+
+  .summary-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cinza);
+    margin-bottom: 6px;
+  }
+
+  .summary-valor {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--cor-sum);
+  }
+
+  /* ─── ESTILO DE LIDERANÇA ─── */
+  .lid-estilos {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .lid-estilo-item {
+    background: var(--branco);
+    border-radius: 16px;
+    padding: 24px 28px;
+    box-shadow: var(--shadow);
+  }
+
+  .lid-estilo-nome {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 8px;
+  }
+
+  .lid-estilo-desc {
+    font-size: 13px;
+    color: var(--cinza);
+    line-height: 1.65;
+  }
+
+  /* ─── ANIMAÇÕES DE ENTRADA ─── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visivel {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── ÍNDICE / NAV ─── */
+  .nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--creme-escuro);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    overflow-x: auto;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--verde);
+    white-space: nowrap;
+    margin-right: 8px;
+  }
+
+  .nav-link {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--cinza);
+    text-decoration: none;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+
+  .nav-link:hover {
+    color: var(--verde);
+    background: var(--verde-pale);
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     DADOS DO CLIENTE — EDITE AQUI
+     ═══════════════════════════════════════════════ -->
+<script>
+const DADOS = {
+  // ── DADOS BÁSICOS
+  nome: "Rian Rossi",
+  data: "09/05/2026",
+  perfil_codigo: "ID",
+  perfil_label: "Influente / Dominante",
+
+  // ── DISC (0–100)
+  // Rian: I ligeiramente à frente de D — mais expressivo e emocional que Roberto (D puro).
+  // Sob pressão vira crítico/revisional (C emergente) — traço que Roberto não tem.
+  // S e C muito baixos, mas C sobe sob estresse (bloco 8: "reviso tudo").
+  disc_natural:  { D: 68, I: 72, S: 20, C: 22 },
+  disc_adaptado: { D: 62, I: 65, S: 28, C: 34 },
+
+  // ── ÍNDICES
+  positividade: 0.70,
+  estima: 0.68,
+  flexibilidade: 0.42,
+
+  // ── TRAÇOS PRINCIPAIS
+  tracos: {
+    D: { natural: "Executor Estratégico",   adaptado: "Dominância contida com consciência crescente" },
+    I: { natural: "Expressivo / Influente", adaptado: "Influência sustentada com leve estruturação" },
+    S: { natural: "Acelerador",             adaptado: "Baixa estabilidade com acomodação pontual" },
+    C: { natural: "Pragmático",             adaptado: "C emergente sob pressão — rigidez e revisão crítica" }
+  },
+
+  // ── DESCRIÇÃO DO PERFIL
+  descricao_perfil: "Rian tem um perfil ID — Influência à frente de Dominância — o que o diferencia do executor puro. Ele age rápido e decide com convicção, mas o motor principal é expressivo: precisa comunicar, envolver e ser percebido. Não basta chegar no resultado — precisa que o resultado seja visto e reconhecido. Une energia de execução com forte presença social, o que o torna naturalmente magnético em ambientes de negociação e liderança. Sua sombra não é impulsividade — é rigidez crítica quando pressionado.",
+
+  potencialidades: "Comunicação expressiva e envolvente que mobiliza pessoas com facilidade. Capacidade de agir em cenários de incerteza sem travar. Leitura rápida de contexto social e comercial. Energia contagiante que acelera equipes e processos. Visão de crescimento ampla com senso natural de oportunidade. Diferencial raro: estratégia aliada à criatividade — pensa e sente ao mesmo tempo.",
+
+  // ── MOTIVADORES
+  motivador_principal: "RECONHECIMENTO e VISIBILIDADE",
+  motivador_principal_desc: "O que move Rian em profundidade é ser percebido pelo valor que entrega — não por vaidade, mas por identidade. Quando o mercado não o reconhece no nível que ele espera, isso gera tensão genuína. Ele precisa que o que faz apareça. Essa motivação é o combustível da sua comunicação e o motor por trás da busca por posicionamento.",
+
+  motivador_secundario: "RESULTADO e PODER DE DECISÃO",
+  motivador_secundario_desc: "O desejo de ver as coisas acontecendo e captar os resultados das suas ações é o segundo grande motor. Rian aceita risco porque crescimento rápido gera mais dados — positivos e negativos — e isso ele enxerga como aprendizado. A autonomia para decidir sem depender de aprovação é condição essencial para seu desempenho.",
+
+  // ── MEDOS
+  medos: [
+    "Não ser percebido pelo valor que entrega",
+    "Ser visto como mais um — sem diferenciação",
+    "Perder autonomia e poder de decisão",
+    "Procrastinar e não executar o que idealizou",
+    "Ser prolixo e gerar ruído em vez de clareza",
+    "Ambientes de baixa energia e sem desafio",
+    "Ter que seguir processos rígidos sem propósito",
+    "Reconhecer que dispersão está sabotando o resultado"
+  ],
+
+  // ── PONTOS A DESENVOLVER
+  pontos_desenvolver: [
+    "Prolixidade que dispersa em vez de comunicar",
+    "Rigidez crítica emergente sob pressão",
+    "Procrastinação gerada por excesso de estímulos simultâneos",
+    "Dificuldade de finalizar o que começou com entusiasmo",
+    "Impaciência com pessoas de ritmo diferente",
+    "Superestimar a própria clareza ao transmitir ideias complexas",
+    "Autoritarismo disfarçado de objetividade",
+    "Baixa tolerância a estrutura e planejamento formal"
+  ],
+
+  // ── ESTILO DE LIDERANÇA (%)
+  // ID: Motivador ligeiramente à frente de Executivo (invertido em relação ao Roberto DI)
+  // C emergente sob pressão adiciona traço Sistemático acima do esperado para DI puro
+  lideranca: [
+    { nome: "Motivador",   pct: 38, cor: "#F4A623", desc: "Aberto, expressivo, dinâmico. Lidera pela energia e pela conexão — inspira antes de impor. Engaja pelo diálogo autêntico e pela visão compartilhada." },
+    { nome: "Executivo",   pct: 36, cor: "#E85D5D", desc: "Firme, rápido e orientado a resultado. Assume controle naturalmente e impõe ritmo quando necessário. Segunda voz dominante da liderança." },
+    { nome: "Sistemático", pct: 16, cor: "#4A90D9", desc: "Analítico e crítico — emerge sob pressão. Revisa, questiona e exige mais qualidade quando o ambiente tensiona. Traço em desenvolvimento consciente." },
+    { nome: "Metódico",    pct: 10, cor: "#3BB08F", desc: "Paciente e bom ouvinte em contextos de baixa pressão. Pouco frequente — aparece em relações de confiança e proximidade." }
+  ],
+
+  // ── TIPOS PSICOLÓGICOS (Jung)
+  // ID alto → Extrovertido marcado; I dominante → Sentimento sobre Pensamento (decide com emoção + lógica);
+  // pragmático e concreto (Sensação), mas com C emergente → leve intuição analítica
+  tipo_jung: "ESF",
+  jung_dims: [
+    { label: "Foco",       a: "Introversão", pct_a: 22, cor_a: "#7C6BD9", b: "Extroversão",  cor_b: "#C8C3F0" },
+    { label: "Percepção",  a: "Sensação",    pct_a: 58, cor_a: "#3BB08F", b: "Intuição",      cor_b: "#A8E0D2" },
+    { label: "Julgamento", a: "Sentimento",  pct_a: 56, cor_a: "#E85D5D", b: "Pensamento",    cor_b: "#F5B8B8" }
+  ],
+
+  // ── TEORIA DE VALORES (0–100)
+  // Político alto: autonomia e poder de decisão são centrais
+  // Econômico alto: resultado e utilidade prática motivam
+  // Social médio: pessoas são combustível, não fim — mas importam mais que no Roberto
+  // Teórico médio: aprende para aplicar e para crescer rápido
+  // Estético baixo-médio: gosto estético presente (clássico, etiqueta) mas não é motor
+  // Religioso baixo: pouca adesão a sistemas tradicionais
+  valores: [
+    { nome: "Político",   subtitulo: "Autonomia & Poder",      valor: 78, cor: "#E85D5D" },
+    { nome: "Econômico",  subtitulo: "Resultado & Utilidade",  valor: 74, cor: "#C4956A" },
+    { nome: "Social",     subtitulo: "Conexão & Pessoas",      valor: 55, cor: "#3BB08F" },
+    { nome: "Teórico",    subtitulo: "Conhecimento Aplicado",  valor: 50, cor: "#4A90D9" },
+    { nome: "Estético",   subtitulo: "Forma & Presença",       valor: 40, cor: "#7C6BD9" },
+    { nome: "Religioso",  subtitulo: "Princípios & Tradição",  valor: 20, cor: "#F4A623" }
+  ],
+
+  // ── COMPETÊNCIAS (natural / adaptado)
+  // I > D: Persuasão, Extroversão, Entusiasmo e Sociabilidade mais altos que Roberto
+  // D presente mas secundário: Ousadia e Comando abaixo do Roberto, mas ainda altos
+  // C emergente: Concentração e Prudência adaptadas acima do natural (tensão sob pressão)
+  // S muito baixo: Paciência e Organização naturais muito baixos
+  competencias: [
+    { nome: "Ousadia",       nat: 72,   ada: 64   },
+    { nome: "Comando",       nat: 68,   ada: 62   },
+    { nome: "Objetividade",  nat: 65,   ada: 58   },
+    { nome: "Assertividade", nat: 70,   ada: 64   },
+    { nome: "Persuasão",     nat: 76,   ada: 68   },
+    { nome: "Extroversão",   nat: 74,   ada: 66   },
+    { nome: "Entusiasmo",    nat: 78,   ada: 68   },
+    { nome: "Sociabilidade", nat: 70,   ada: 65   },
+    { nome: "Empatia",       nat: 55,   ada: 60   },
+    { nome: "Paciência",     nat: 18,   ada: 30   },
+    { nome: "Persistência",  nat: 58,   ada: 55   },
+    { nome: "Planejamento",  nat: 24,   ada: 38   },
+    { nome: "Organização",   nat: 22,   ada: 35   },
+    { nome: "Detalhismo",    nat: 18,   ada: 30   },
+    { nome: "Prudência",     nat: 25,   ada: 42   },
+    { nome: "Concentração",  nat: 40,   ada: 52   }
+  ],
+
+  // ── MAPEAMENTO DE PERFIL
+  // ID vs DI (Roberto): Rian mais à esquerda em Comunicativo, Emocional, Foco em relacionamentos
+  // Rian menos agressivo estilísticamente, mais consultivo que Roberto
+  // Ambos aversos à rotina, mas Rian delega mais (I forte) vs Roberto que centraliza mais (D puro)
+  mapeamento: [
+    { a: "Otimista",               pos: 78, b: "Realista" },
+    { a: "Comunicativo",           pos: 80, b: "Analista" },
+    { a: "Generalista",            pos: 70, b: "Detalhista" },
+    { a: "Estilo Agressivo",       pos: 58, b: "Estilo Consultivo" },
+    { a: "Melhor em falar",        pos: 78, b: "Melhor em ouvir" },
+    { a: "Averso à rotina",        pos: 80, b: "Rotineiro" },
+    { a: "Delega",                 pos: 65, b: "Centraliza" },
+    { a: "Compreensivo",           pos: 52, b: "Imparcial" },
+    { a: "Casual",                 pos: 58, b: "Formal" },
+    { a: "Foco em relacionamentos",pos: 68, b: "Foco nas tarefas" },
+    { a: "Emocional",              pos: 55, b: "Racional" },
+    { a: "Dinâmico",               pos: 82, b: "Estável" },
+    { a: "Age com firmeza",        pos: 65, b: "Age com consentimento" },
+    { a: "Assume riscos",          pos: 70, b: "Prudente" },
+    { a: "Cria do zero",           pos: 65, b: "Aprimora o que existe" },
+    { a: "Extrovertido",           pos: 76, b: "Introvertido" }
+  ],
+
+  // ── DICAS DE COMUNICAÇÃO
+  comunicacao: [
+    {
+      perfil: "Dominante (D)",
+      cor: "#E85D5D",
+      dicas: [
+        "Seja específico, vá direto ao ponto e seja breve",
+        "Concentre-se em resultados e prazos",
+        "Não abuse da sociabilidade — foque no profissional",
+        "Faça sugestões em vez de apontar pontos negativos"
+      ]
+    },
+    {
+      perfil: "Influente (I)",
+      cor: "#F4A623",
+      dicas: [
+        "Seja caloroso e amigável, construa a relação",
+        "Deixe-o controlar o diálogo e verbalizar ideias",
+        "Não aponte muitos detalhes — deixe-o participar",
+        "Interaja em ambientes dinâmicos e descontraídos"
+      ]
+    },
+    {
+      perfil: "Estável (S)",
+      cor: "#3BB08F",
+      dicas: [
+        "Seja gentil e construa uma relação de confiança",
+        "Demonstre paciência com sua hesitação",
+        "Concentre-se em 'como fazer' em vez de 'o que fazer'",
+        "Evite tom de voz forte e linguagem incisiva"
+      ]
+    },
+    {
+      perfil: "Conforme (C)",
+      cor: "#4A90D9",
+      dicas: [
+        "Prepare-se com antecedência — padrões são elevados",
+        "Seja formal e realista; não seja generalista",
+        "Apoie afirmações em dados precisos e úteis",
+        "Ofereça segurança e garantias sempre que possível"
+      ]
+    }
+  ]
+};
+</script>
+
+<!-- ═══ CAPA ═══ -->
+<div class="capa">
+  <div class="capa-logo">Repertorium® — Relatório Comportamental</div>
+  <div class="capa-arvore">🌳</div>
+  <h1 class="capa-titulo">Mapeamento de<br>Perfil Comportamental</h1>
+  <p class="capa-subtitulo">Metodologia DISC · Tipos Psicológicos · Teoria de Valores</p>
+  <div class="capa-card">
+    <div class="capa-nome" id="capa-nome">—</div>
+    <div class="capa-perfil-badge" id="capa-perfil-badge">—</div>
+  </div>
+  <div class="capa-meta">
+    <span id="capa-data">—</span>
+    <span>·</span>
+    <span>Confidencial</span>
+    <span>·</span>
+    <span id="capa-solicitante">Repertorium®</span>
+  </div>
+</div>
+
+<!-- ═══ NAV BAR ═══ -->
+<nav class="nav-bar">
+  <div class="nav-logo">Repertorium®</div>
+  <a href="#perfil" class="nav-link">Perfil</a>
+  <a href="#disc" class="nav-link">DISC</a>
+  <a href="#motivadores" class="nav-link">Motivadores</a>
+  <a href="#valores" class="nav-link">Valores</a>
+  <a href="#competencias" class="nav-link">Competências</a>
+  <a href="#lideranca" class="nav-link">Liderança</a>
+  <a href="#jung" class="nav-link">Tipos Psicológicos</a>
+  <a href="#mapeamento" class="nav-link">Mapeamento</a>
+  <a href="#comunicacao" class="nav-link">Comunicação</a>
+</nav>
+
+<!-- ═══ CONTEÚDO PRINCIPAL ═══ -->
+<div class="container">
+
+  <!-- ── PERFIL ── -->
+  <section class="secao fade-in" id="perfil">
+    <div class="secao-num">01 — Intensidade do Perfil</div>
+    <h2 class="secao-titulo" id="secao-nome-titulo">—</h2>
+    <p class="secao-desc">Análise comportamental baseada na Teoria DISC de William M. Marston.</p>
+
+    <div class="summary-bar" id="summary-bar"></div>
+
+    <div class="perfil-destaque" id="perfil-destaque">
+      <div class="perfil-badge-grande" id="perfil-badge-grande">—</div>
+      <p class="perfil-descricao" id="perfil-descricao">—</p>
+      <div class="perfil-forças">
+        <h4>Potencialidades</h4>
+        <p id="perfil-potencialidades">—</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DISC ── -->
+  <section class="secao fade-in" id="disc">
+    <div class="secao-num">02 — Gráfico DISC</div>
+    <h2 class="secao-titulo">Intensidade por Fator</h2>
+    <p class="secao-desc">Comparativo entre o estilo Natural (quem você é) e o Adaptado (como o ambiente te percebe).</p>
+
+    <div class="disc-grid" id="disc-grid"></div>
+  </section>
+
+  <!-- ── MOTIVADORES ── -->
+  <section class="secao fade-in" id="motivadores">
+    <div class="secao-num">03 — Motivadores</div>
+    <h2 class="secao-titulo">O que move você</h2>
+    <p class="secao-desc">Compreender os motivadores revela o porquê das suas atitudes e decisões mais profundas.</p>
+
+    <div class="motivadores-grid">
+      <div class="motivador-card principal">
+        <div class="motivador-tag">Motivador Principal</div>
+        <div class="motivador-titulo" id="mot-pri-titulo">—</div>
+        <p class="motivador-texto" id="mot-pri-desc">—</p>
+      </div>
+      <div class="motivador-card secundario">
+        <div class="motivador-tag" style="color:var(--cinza)">Motivador Secundário</div>
+        <div class="motivador-titulo" id="mot-sec-titulo">—</div>
+        <p class="motivador-texto" id="mot-sec-desc">—</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="secao-num" style="margin-bottom:12px">Medos Identificados</div>
+    <div class="tags-grid" id="medos-grid"></div>
+  </section>
+
+  <!-- ── VALORES ── -->
+  <section class="secao fade-in" id="valores">
+    <div class="secao-num">04 — Teoria de Valores</div>
+    <h2 class="secao-titulo">Hierarquia de Valores</h2>
+    <p class="secao-desc">Os valores mais significativos direcionam as suas ações e indicam como você enxerga o mundo.</p>
+
+    <div class="valores-grid" id="valores-grid"></div>
+
+    <div class="nota">
+      <strong>Significativo</strong> (acima de 60): direciona ações e decisões íntimas. <strong>Circunstancial</strong> (40–60): varia conforme o momento de vida. <strong>Indiferente</strong> (abaixo de 40): baixo interesse ou necessidade de estímulo.
+    </div>
+  </section>
+
+  <!-- ── COMPETÊNCIAS ── -->
+  <section class="secao fade-in" id="competencias">
+    <div class="secao-num">05 — Mapa de Competências</div>
+    <h2 class="secao-titulo">Potenciais Comportamentais</h2>
+    <p class="secao-desc">Os 16 subfatores DISC revelam o nível de cada competência comportamental — Natural vs. Adaptado.</p>
+
+    <div class="radar-wrap" style="margin-bottom:32px">
+      <canvas id="radarChart" width="500" height="380"></canvas>
+      <div class="radar-legenda">
+        <div class="radar-leg-item">
+          <div class="radar-leg-dot" style="background:var(--verde-medio)"></div>
+          Natural
+        </div>
+        <div class="radar-leg-item">
+          <div class="radar-leg-dot" style="background:var(--terra)"></div>
+          Adaptado
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-grid" id="comp-grid"></div>
+  </section>
+
+  <!-- ── LIDERANÇA ── -->
+  <section class="secao fade-in" id="lideranca">
+    <div class="secao-num">06 — Estilo de Liderança</div>
+    <h2 class="secao-titulo">Como você lidera</h2>
+    <p class="secao-desc">O líder mais eficaz adapta sua forma de liderar de acordo com os perfis e necessidades de cada membro da equipe.</p>
+
+    <div class="lideranca-donut">
+      <div class="donut-wrap">
+        <canvas id="donutChart" width="200" height="200"></canvas>
+      </div>
+      <div class="lideranca-lista" id="lideranca-lista"></div>
+    </div>
+
+    <div class="lid-estilos" id="lid-estilos"></div>
+  </section>
+
+  <!-- ── TIPOS PSICOLÓGICOS ── -->
+  <section class="secao fade-in" id="jung">
+    <div class="secao-num">07 — Tipos Psicológicos</div>
+    <h2 class="secao-titulo">Tipologia Junguiana</h2>
+    <p class="secao-desc">Baseado nos conceitos de Carl G. Jung — como você foca a atenção, capta informações e tira conclusões.</p>
+
+    <div style="display:flex; justify-content:center; margin-bottom:32px">
+      <div style="background:var(--verde); color:var(--branco); border-radius:20px; padding:32px 64px; text-align:center">
+        <div style="font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--verde-suave); margin-bottom:8px; font-weight:600">Tipo de Personalidade</div>
+        <div style="font-family:'DM Serif Display',serif; font-size:72px; line-height:1;" id="jung-tipo-grande">—</div>
+      </div>
+    </div>
+
+    <div class="jung-grid" id="jung-grid"></div>
+  </section>
+
+  <!-- ── PONTOS A DESENVOLVER ── -->
+  <section class="secao fade-in">
+    <div class="secao-num">08 — Pontos a Desenvolver</div>
+    <h2 class="secao-titulo">Oportunidades de Crescimento</h2>
+    <p class="secao-desc">Sob condições de pressão ou estresse, pessoas com este perfil tendem a apresentar os comportamentos abaixo.</p>
+
+    <div class="tags-grid" id="pontos-grid"></div>
+
+    <div class="nota">Avalie cada item e identifique quais comportamentos você já superou e quais ainda precisa trabalhar para maximizar sua eficácia pessoal e profissional.</div>
+  </section>
+
+  <!-- ── MAPEAMENTO ── -->
+  <section class="secao fade-in" id="mapeamento">
+    <div class="secao-num">09 — Mapeamento de Perfil</div>
+    <h2 class="secao-titulo">Posição nos Espectros</h2>
+    <p class="secao-desc">Visualização da tendência comportamental em cada dimensão de contraste.</p>
+
+    <div class="mapa-grid" id="mapa-grid"></div>
+  </section>
+
+  <!-- ── COMUNICAÇÃO ── -->
+  <section class="secao fade-in" id="comunicacao">
+    <div class="secao-num">10 — Eficácia na Comunicação</div>
+    <h2 class="secao-titulo">Como se comunicar com cada perfil</h2>
+    <p class="secao-desc">Adaptar seu estilo ao interlocutor é a marca de um comunicador eficaz e gera melhores resultados.</p>
+
+    <div class="com-grid" id="com-grid"></div>
+  </section>
+
+</div><!-- /container -->
+
+<!-- ═══ RODAPÉ ═══ -->
+<footer class="rodape">
+  <div class="rodape-logo">Repertorium®</div>
+  <p id="rodape-nome">—</p>
+  <p style="margin-top:4px; font-size:12px">Documento Confidencial · Metodologia DISC</p>
+</footer>
+
+<!-- ═══ SCRIPTS ═══ -->
+<script>
+// ── Renderização inicial
+document.getElementById('capa-nome').textContent = DADOS.nome;
+document.getElementById('capa-perfil-badge').textContent = `Perfil ${DADOS.perfil_codigo} — ${DADOS.perfil_label}`;
+document.getElementById('capa-data').textContent = `Realizado em: ${DADOS.data}`;
+document.getElementById('secao-nome-titulo').textContent = DADOS.nome;
+document.getElementById('perfil-descricao').textContent = DADOS.descricao_perfil;
+document.getElementById('perfil-potencialidades').textContent = DADOS.potencialidades;
+document.getElementById('perfil-badge-grande').textContent = `Perfil ${DADOS.perfil_codigo} — ${DADOS.perfil_label}`;
+document.getElementById('perfil-destaque').setAttribute('data-perfil', DADOS.perfil_codigo);
+document.getElementById('mot-pri-titulo').textContent = DADOS.motivador_principal;
+document.getElementById('mot-pri-desc').textContent = DADOS.motivador_principal_desc;
+document.getElementById('mot-sec-titulo').textContent = DADOS.motivador_secundario;
+document.getElementById('mot-sec-desc').textContent = DADOS.motivador_secundario_desc;
+document.getElementById('jung-tipo-grande').textContent = DADOS.tipo_jung;
+document.getElementById('rodape-nome').textContent = DADOS.nome;
+
+// ── Summary Bar
+const sumBar = document.getElementById('summary-bar');
+const sumItems = [
+  { label: 'Perfil', valor: DADOS.perfil_codigo, cor: 'var(--verde)' },
+  { label: 'Positividade', valor: `${Math.round(DADOS.positividade * 100)}%`, cor: 'var(--S)' },
+  { label: 'Estima', valor: `${Math.round(DADOS.estima * 100)}%`, cor: 'var(--I)' },
+  { label: 'Flexibilidade', valor: `${Math.round(DADOS.flexibilidade * 100)}%`, cor: 'var(--C)' }
+];
+sumItems.forEach(s => {
+  sumBar.innerHTML += `
+    <div class="summary-item" style="--cor-sum:${s.cor}">
+      <div class="summary-label">${s.label}</div>
+      <div class="summary-valor">${s.valor}</div>
+    </div>`;
+});
+
+// ── DISC Cards
+const discGrid = document.getElementById('disc-grid');
+const discCores = { D: 'var(--D)', I: 'var(--I)', S: 'var(--S)', C: 'var(--C)' };
+const discNomes = { D: 'Dominância', I: 'Influência', S: 'Estabilidade', C: 'Conformidade' };
+['D','I','S','C'].forEach(f => {
+  const nat = DADOS.disc_natural[f];
+  const ada = DADOS.disc_adaptado[f];
+  discGrid.innerHTML += `
+    <div class="disc-card" style="--cor:${discCores[f]}">
+      <div class="disc-card-header">
+        <div class="disc-letra" style="--cor:${discCores[f]}">${f}</div>
+        <div class="disc-card-info">
+          <h3>${discNomes[f]}</h3>
+          <span>${DADOS.tracos[f].natural}</span>
+        </div>
+      </div>
+      <div class="disc-barra-wrap">
+        <div class="disc-barra-label">
+          <span>Natural</span><span>${nat}</span>
+        </div>
+        <div class="disc-barra-bg">
+          <div class="disc-barra-fill" style="--w:${nat}%; --cor:${discCores[f]}; background:${discCores[f]}" data-w="${nat}"></div>
+        </div>
+      </div>
+      <div class="disc-barra-wrap">
+        <div class="disc-barra-label">
+          <span>Adaptado</span><span>${ada}</span>
+        </div>
+        <div class="disc-barra-bg">
+          <div class="disc-barra-fill" style="--w:${ada}%; background:${discCores[f]}; opacity:0.55" data-w="${ada}"></div>
+        </div>
+      </div>
+      <div class="disc-valor">${nat}</div>
+      <div class="disc-traço">${DADOS.tracos[f].adaptado}</div>
+    </div>`;
+});
+
+// ── Medos
+const medosGrid = document.getElementById('medos-grid');
+DADOS.medos.forEach(m => {
+  medosGrid.innerHTML += `<div class="tag-item"><span class="icon">⚠️</span>${m}</div>`;
+});
+
+// ── Pontos a Desenvolver
+const pontosGrid = document.getElementById('pontos-grid');
+DADOS.pontos_desenvolver.forEach(p => {
+  pontosGrid.innerHTML += `<div class="tag-item"><span class="icon">🔶</span>${p}</div>`;
+});
+
+// ── Valores
+const valoresGrid = document.getElementById('valores-grid');
+DADOS.valores.forEach(v => {
+  valoresGrid.innerHTML += `
+    <div class="valor-item">
+      <div class="valor-nome">${v.nome}<small>${v.subtitulo}</small></div>
+      <div class="valor-barra-bg">
+        <div class="valor-barra-fill" style="--w:${v.valor}%; --cor-valor:${v.cor}; background:${v.cor}" data-w="${v.valor}"></div>
+      </div>
+      <div class="valor-num" style="color:${v.cor}">${v.valor}</div>
+    </div>`;
+});
+
+// ── Competências
+const compGrid = document.getElementById('comp-grid');
+DADOS.competencias.forEach(c => {
+  compGrid.innerHTML += `
+    <div class="comp-item">
+      <div class="comp-nome">${c.nome}</div>
+      <div class="comp-barras">
+        <div class="comp-barra-row">
+          <span class="comp-tag">Natural</span>
+          <div class="comp-barra-bg">
+            <div class="comp-barra-fill nat" style="--w:${c.nat}%" data-w="${c.nat}"></div>
+          </div>
+          <span class="comp-num">${c.nat}</span>
+        </div>
+        <div class="comp-barra-row">
+          <span class="comp-tag">Adaptado</span>
+          <div class="comp-barra-bg">
+            <div class="comp-barra-fill ada" style="--w:${c.ada}%" data-w="${c.ada}"></div>
+          </div>
+          <span class="comp-num">${c.ada}</span>
+        </div>
+      </div>
+    </div>`;
+});
+
+// ── Liderança lista
+const lidLista = document.getElementById('lideranca-lista');
+const lidEstilos = document.getElementById('lid-estilos');
+DADOS.lideranca.forEach(l => {
+  lidLista.innerHTML += `
+    <div class="lid-item">
+      <div class="lid-cor" style="background:${l.cor}"></div>
+      <div class="lid-info">
+        <div class="lid-nome">${l.nome}</div>
+        <div class="lid-desc">${l.desc}</div>
+      </div>
+      <div class="lid-pct">${l.pct}%</div>
+    </div>`;
+  lidEstilos.innerHTML += `
+    <div class="lid-estilo-item" style="border-left:3px solid ${l.cor}">
+      <div class="lid-estilo-nome">${l.nome} — ${l.pct}%</div>
+      <div class="lid-estilo-desc">${l.desc}</div>
+    </div>`;
+});
+
+// ── Jung grid
+const jungGrid = document.getElementById('jung-grid');
+DADOS.jung_dims.forEach(d => {
+  jungGrid.innerHTML += `
+    <div class="jung-card">
+      <div class="jung-label">${d.label}</div>
+      <div class="jung-tipo">${d.pct_a}%</div>
+      <div class="jung-barra-dupla">
+        <div class="jung-lado-a" style="--pct-a:${d.pct_a}%; --cor-a:${d.cor_a}; background:${d.cor_a}"></div>
+        <div class="jung-lado-b" style="background:${d.cor_b}"></div>
+      </div>
+      <div class="jung-labels">
+        <span style="color:${d.cor_a}">${d.a}</span>
+        <span style="color:${d.cor_b}">${d.b}</span>
+      </div>
+    </div>`;
+});
+
+// ── Mapeamento
+const mapaGrid = document.getElementById('mapa-grid');
+DADOS.mapeamento.forEach(m => {
+  mapaGrid.innerHTML += `
+    <div class="mapa-row">
+      <div class="mapa-polo">${m.a}</div>
+      <div class="mapa-trilho">
+        <div class="mapa-marcador" data-pos="${m.pos}%"></div>
+      </div>
+      <div class="mapa-polo direito">${m.b}</div>
+    </div>`;
+});
+
+// ── Comunicação
+const comGrid = document.getElementById('com-grid');
+DADOS.comunicacao.forEach(c => {
+  comGrid.innerHTML += `
+    <div class="com-card" style="--cor-border:${c.cor}">
+      <div class="com-titulo">
+        <div class="dot" style="background:${c.cor}"></div>
+        Ao se comunicar com um ${c.perfil}
+      </div>
+      <ul class="com-lista">
+        ${c.dicas.map(d => `<li>${d}</li>`).join('')}
+      </ul>
+    </div>`;
+});
+
+// ══ CANVAS: Radar Chart ══
+function desenharRadar() {
+  const canvas = document.getElementById('radarChart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const cx = W / 2, cy = H / 2;
+  const R = Math.min(W, H) * 0.38;
+  const labels = DADOS.competencias.map(c => c.nome);
+  const valNat = DADOS.competencias.map(c => c.nat / 100);
+  const valAda = DADOS.competencias.map(c => c.ada / 100);
+  const n = labels.length;
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Grades
+  for (let r = 1; r <= 5; r++) {
+    ctx.beginPath();
+    for (let i = 0; i < n; i++) {
+      const angle = (i / n) * Math.PI * 2 - Math.PI / 2;
+      const x = cx + Math.cos(angle) * R * (r / 5);
+      const y = cy + Math.sin(angle) * R * (r / 5);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(0,0,0,0.06)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // Eixos
+  for (let i = 0; i < n; i++) {
+    const angle = (i / n) * Math.PI * 2 - Math.PI / 2;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + Math.cos(angle) * R, cy + Math.sin(angle) * R);
+    ctx.strokeStyle = 'rgba(0,0,0,0.08)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // Labels
+    const lx = cx + Math.cos(angle) * (R + 22);
+    const ly = cy + Math.sin(angle) * (R + 22);
+    ctx.fillStyle = '#6B7280';
+    ctx.font = '10px DM Sans, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(labels[i], lx, ly);
+  }
+
+  // Polígono Natural
+  function drawPoly(vals, cor, alpha) {
+    ctx.beginPath();
+    for (let i = 0; i < n; i++) {
+      const angle = (i / n) * Math.PI * 2 - Math.PI / 2;
+      const x = cx + Math.cos(angle) * R * vals[i];
+      const y = cy + Math.sin(angle) * R * vals[i];
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = cor.replace(')', `,${alpha})`).replace('rgb', 'rgba');
+    ctx.fill();
+    ctx.strokeStyle = cor;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+
+  drawPoly(valNat, 'rgb(74,124,41)', 0.15);
+  drawPoly(valAda, 'rgb(196,149,106)', 0.12);
+}
+
+// ══ CANVAS: Donut Chart ══
+function desenharDonut() {
+  const canvas = document.getElementById('donutChart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const cx = W / 2, cy = H / 2;
+  const R = Math.min(W, H) * 0.42;
+  const inner = R * 0.55;
+  let startAngle = -Math.PI / 2;
+
+  DADOS.lideranca.forEach(l => {
+    const slice = (l.pct / 100) * Math.PI * 2;
+    ctx.beginPath();
+    ctx.arc(cx, cy, R, startAngle, startAngle + slice);
+    ctx.arc(cx, cy, inner, startAngle + slice, startAngle, true);
+    ctx.closePath();
+    ctx.fillStyle = l.cor;
+    ctx.fill();
+    ctx.strokeStyle = '#FAF7F2';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    startAngle += slice;
+  });
+}
+
+// ══ INTERSECTION OBSERVER — animações ══
+const observerBarras = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.querySelectorAll('[data-w]').forEach(el => {
+      const w = el.getAttribute('data-w');
+      el.style.width = w + '%';
+      el.classList.add('animada');
+    });
+    entry.target.querySelectorAll('.mapa-marcador[data-pos]').forEach(el => {
+      const pos = el.getAttribute('data-pos');
+      el.style.left = pos;
+      el.classList.add('animado');
+    });
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.secao, .mapa-grid, .comp-grid, .valores-grid').forEach(el => {
+  observerBarras.observe(el);
+});
+
+const observerFade = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visivel');
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.fade-in').forEach(el => observerFade.observe(el));
+
+// ── Render após DOM
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    desenharRadar();
+    desenharDonut();
+  }, 200);
+});
+</script>
+</body>
+</html>
